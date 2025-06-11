@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import logo from "../assets/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Navbar = () => {
+
+
+  const navigate = useNavigate();
+  
   const [nav, setNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -33,8 +40,30 @@ const Navbar = () => {
     { id: 5, text: 'About Us' }
   ];
 
+  const handleNavigate = (id) => {
+    switch (id) {
+      case 1:
+        navigate('/');
+        break;
+      case 2:
+        navigate('/services');
+        break;
+      case 3:
+        navigate('/tools');
+        break;
+      case 4:
+        navigate('/contact-us');
+        break;
+      case 5:
+        navigate('/about-us');
+        break;
+      default:
+        navigate('/');
+    }
+  }
+
   return (
-    <div className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-red-700 shadow-md' : 'bg-red-600'}`}>
+    <div className={`w-full z-50 transition-colors duration-300 ${isScrolled ? 'bg-red-700 shadow-md' : 'bg-red-600'}`}>
       <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
         
         {/* Logo Section */}
@@ -49,6 +78,7 @@ const Navbar = () => {
             <li
               key={item.id}
               className='p-2 hover:bg-[#00df9a] hover:text-black rounded-xl cursor-pointer duration-300'
+              onClick={()=>handleNavigate(item.id)}
             >
               {item.text}
             </li>

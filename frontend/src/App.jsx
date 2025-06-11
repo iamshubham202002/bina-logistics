@@ -1,18 +1,18 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Contact from './pages/Contact';
+import Services from './pages/Services';
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    // <div className="overflow-x-hidden bg-white
-    // dark:bg-black text-black dark:text-white">
-  
-    //   <Navbar />
-    //   <Home />
-    // </div>
-    <div>
-      <Contact />
+    <div className="">
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/services' element={<Services />} />
+        <Route path='/contact-us' element={"Contact US"} />
+      </Routes>
     </div>
   );
 };
