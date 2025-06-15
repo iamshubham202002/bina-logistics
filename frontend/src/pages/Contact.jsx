@@ -31,7 +31,7 @@ const ContactPage = () => {
     <>
       <div className="relative">
         <img
-          className="w-full object-cover brightness-50 filter lg:h-[500px]"
+          className="w-full object-cover brightness-50 filter lg:h-[500px] h-[300px]"
           src={contactImage} // ✅ Use imported image here
           alt="contact page"
         />
