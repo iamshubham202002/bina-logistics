@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import AboutUs from './pages/About';
+import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +17,10 @@ const App = () => {
         <Route path='/contact-us' element={ <Contact />} />
         <Route path='/about-us' element={ <AboutUs />} />
       </Routes>
+      {/* Footer can be added here if needed */}
+      {/* <Footer /> */} 
+      <Footer />
+     
     </div>
   );
 };
