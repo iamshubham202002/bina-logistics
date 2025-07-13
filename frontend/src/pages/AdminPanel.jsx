@@ -3,7 +3,7 @@ import Requests from "../components/Requests";
 import Packages from "../components/Packages";
 
 
-const AdminPannel = () => {
+const AdminPanel = () => {
 
    const [content, setContent] = useState("Requests");
 
@@ -28,4 +28,4 @@ const AdminPannel = () => {
   )
 }
 
-export default AdminPannel
+export default AdminPanel

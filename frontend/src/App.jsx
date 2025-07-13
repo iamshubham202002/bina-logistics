@@ -6,7 +6,7 @@ import Contact from './pages/Contact';
 import AboutUs from './pages/About';
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
-import AdminPannel from './pages/AdminPannel';
+import AdminPanel from './pages/AdminPanel';
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path='/services' element={<Services />} />
         <Route path='/contact-us' element={ <Contact />} />
         <Route path='/about-us' element={ <AboutUs />} />
-        <Route path='/admin-pannel' element={ <AdminPannel />} />
+        <Route path='/admin-panel' element={ <AdminPanel />} />
       </Routes>
       {/* Footer can be added here if needed */}
       {/* <Footer /> */} 
