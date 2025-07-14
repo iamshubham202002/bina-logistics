@@ -1,8 +1,11 @@
 import express from 'express';
-import { submitRequest } from '../Controllers/requestController.js';
+import { getAllRequest, submitRequest } from '../Controllers/requestController.js';
+import { isAdmin } from '../middlewares/isAdmin.js';
 
 const requestRouter = express.Router();
 
-requestRouter.route('/submit', submitRequest);
+requestRouter.post('/submit', submitRequest);
+requestRouter.get('/all', getAllRequest);
+requestRouter.post('/is-admin', isAdmin);
 
 export default requestRouter;
