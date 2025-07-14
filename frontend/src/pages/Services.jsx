@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
  
 const Services = () => {
@@ -9,9 +10,9 @@ const Services = () => {
   const [yourName, setYourName] = useState('');
   const [yourPhone, setYourPhone] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would handle the form submission, e.g., send data to an API
+
     console.log({
       freightType,
       load,
@@ -19,13 +20,23 @@ const Services = () => {
       yourName,
       yourPhone,
     });
-    alert('Request Submitted! Check console for data.');
-    // You might also want to clear the form fields here
+    const data = {freightType, load, city, name: yourName, phone:yourPhone};
+    const res = await axios.post("http://localhost:3003/api/request/submit", data);
+
+    if (res.data.success) {
+      setFreightType("");
+      setLoad("");
+      setCity("");
+      setYourName("");
+      setYourPhone("");
+    } else {
+      alert(res.data.message);
+    }
   };
 
 
   return (
-    <div className='flex w-[100%]'>
+    <div className='flex w-[100%] pb-20'>
       <div className='w-[50%]'>
          <h3 className='text-4xl text-center mt-20 font-bold'>Our Services :</h3>
          <p className='ml-25 mt-5 text-2xl'>At Bina Logistics, we offer end-to-end logistics solutions tailored to meet your business needs. Whether you're a small business or a large enterprise, our comprehensive services ensure your goods move efficiently, safely, and on time.</p>
@@ -51,9 +62,9 @@ const Services = () => {
               onChange={(e) => setFreightType(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+              <option value="Air">Air Freight</option>
+              <option value="Road">Road Freight</option>
+              <option value="Rail">Rail Freight</option>
             </select>
             {/* Custom arrow for select */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
@@ -78,8 +89,8 @@ const Services = () => {
               onChange={(e) => setLoad(e.target.value)}
             >
               <option value="">Select</option>
-              <option value="load1">Load 1</option>
-              <option value="load2">Load 2</option>
+              <option value="1000">1000</option>
+              <option value="500">500</option>
             </select>
             {/* Custom arrow for select */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
@@ -103,10 +114,10 @@ const Services = () => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
             >
-              <option value="">Select City</option>
-              <option value="newYork">New York</option>
-              <option value="losAngeles">Los Angeles</option>
-              <option value="chicago">Chicago</option>
+              <option value="bengaluru">Bengaluru</option>
+              <option value="newDelhi">New Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="varanasi">Varansi</option>
             </select>
             {/* Custom arrow for select */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
