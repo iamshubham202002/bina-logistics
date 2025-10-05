@@ -18,4 +18,16 @@ const submitRequest = async (req, res) => {
    }
 }
 
-export { submitRequest };
+const getAllRequest = async (req, res) => {
+   try {
+
+      const arr = await requestModel.find();
+
+      return res.json({success: true, arr});
+      
+   } catch (error) {
+      res.json({success: false, message: error.message});
+   }
+}
+
+export { submitRequest, getAllRequest };

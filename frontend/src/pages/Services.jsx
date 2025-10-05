@@ -10,7 +10,7 @@ const Services = () => {
   const [yourName, setYourName] = useState('');
   const [yourPhone, setYourPhone] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       freightType,
