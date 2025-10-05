@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { TruckIcon, TrainIcon } from 'lucide-react'; // You can use lucide or heroicons
+import { TruckIcon, TrainIcon , MessageCircleIcon} from 'lucide-react'; // You can use lucide or heroicons
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -29,11 +29,18 @@ const Home = () => {
             Welcome to <span className="text-blue-500">Bina Logistics</span>
           </h2>
           <p className="mt-4 text-white text-lg tracking-wide drop-shadow">
-            Shubham Pandey
+            Nikhil Pandey
           </p>
-          <button className="mt-6 px-8 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors">
-            Get a Quote
-          </button>
+       <a
+  href="https://wa.me/918777328142?text=Hi%2C%20I%20am%20Nikhil%20Pandey%2C%20and%20I%20am%20interested%20in%20getting%20a%20quote."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition-colors"
+>
+  <MessageCircleIcon className="w-5 h-5" />
+  Chat on WhatsApp
+</a>
+
         </div>
       </div>
 

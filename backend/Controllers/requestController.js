@@ -1,5 +1,6 @@
 import requestModel from "../Models/requestModel.js";
 
+
 const submitRequest = async (req, res) => {
    const {freightType, load, city, name, phone} = req.body;
 
