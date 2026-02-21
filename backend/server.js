@@ -10,10 +10,13 @@ dotenv.config({path: './.env'});
 
 
 const app = express();
-const port = 3003;
+const port = process.env.PORT || 3003;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
+
 
 // Connect to MongoDB
 connect();
