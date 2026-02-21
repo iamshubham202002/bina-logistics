@@ -24,10 +24,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Tools removed from here (now handled separately)
   const navItems = [
     { id: 1, text: 'Home', path: '/' },
     { id: 2, text: 'Services', path: '/services' },
-    { id: 3, text: 'Tools', path: '/tools' },
     { id: 4, text: 'Contact Us', path: '/contact-us' },
     { id: 5, text: 'About Us', path: '/about-us' },
   ];
@@ -39,25 +39,32 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Fixed Navbar with blur + smooth transition */}
+      {/* Navbar */}
       <div
         className={`fixed top-0 left-0 w-full z-50 backdrop-blur transition-all duration-500 ${
           isScrolled ? 'bg-red-700/90 shadow-md' : 'bg-red-600/60'
         }`}
       >
         <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4">
+
           {/* Logo */}
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => handleNavigate('/')}>
+          <div
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => handleNavigate('/')}
+          >
             <img
               src={logo}
               alt="Logo"
               className="h-12 w-12 object-contain transition-transform duration-500 hover:rotate-6"
             />
-            <span className="text-xl font-bold text-white">Bina Logistics</span>
+            <span className="text-xl font-bold text-white">
+              Bina Logistics
+            </span>
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 text-white">
+          <ul className="hidden md:flex space-x-6 text-white items-center">
+
             {navItems.map((item) => (
               <li
                 key={item.id}
@@ -69,15 +76,44 @@ const Navbar = () => {
                 {item.text}
                 <span
                   className={`absolute left-0 bottom-0 h-0.5 bg-[#00df9a] transition-all duration-300 ${
-                    location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
+                    location.pathname === item.path
+                      ? 'w-full'
+                      : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
               </li>
             ))}
+
+            {/* 🔥 Tools Dropdown */}
+            <li className="relative group px-2 py-1 cursor-pointer">
+              <span
+                className={`transition duration-300 ${
+                  location.pathname === '/track-order'
+                    ? 'text-[#00df9a]'
+                    : 'group-hover:text-[#00df9a]'
+                }`}
+              >
+                Tools ▾
+              </span>
+
+              {/* Dropdown */}
+              <div className="absolute left-0 top-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1 translate-y-2 bg-white text-black rounded-md shadow-xl w-44">
+                <div
+                  onClick={() => handleNavigate('/track-order')}
+                  className="px-4 py-2 hover:bg-[#00df9a] hover:text-black cursor-pointer transition duration-200"
+                >
+                  Track Order
+                </div>
+              </div>
+            </li>
+
           </ul>
 
           {/* Mobile Icon */}
-          <div onClick={handleNav} className="block md:hidden cursor-pointer text-white">
+          <div
+            onClick={handleNav}
+            className="block md:hidden cursor-pointer text-white"
+          >
             {nav ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
           </div>
         </div>
@@ -93,23 +129,42 @@ const Navbar = () => {
               <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
               <span className="text-xl font-bold">Bina Logistics</span>
             </div>
-            <AiOutlineClose size={24} onClick={handleNav} className="cursor-pointer" />
+            <AiOutlineClose
+              size={24}
+              onClick={handleNav}
+              className="cursor-pointer"
+            />
           </div>
+
           {navItems.map((item) => (
             <li
               key={item.id}
               onClick={() => handleNavigate(item.path)}
               className={`p-4 border-b border-gray-600 cursor-pointer transition duration-300 ${
-                location.pathname === item.path ? 'bg-[#00df9a] text-black' : 'hover:bg-[#00df9a] hover:text-black'
+                location.pathname === item.path
+                  ? 'bg-[#00df9a] text-black'
+                  : 'hover:bg-[#00df9a] hover:text-black'
               }`}
             >
               {item.text}
             </li>
           ))}
+
+          {/* Mobile Track Order */}
+          <li
+            onClick={() => handleNavigate('/track-order')}
+            className={`p-4 border-b border-gray-600 cursor-pointer transition duration-300 ${
+              location.pathname === '/track-order'
+                ? 'bg-[#00df9a] text-black'
+                : 'hover:bg-[#00df9a] hover:text-black'
+            }`}
+          >
+            Track Order
+          </li>
         </ul>
       </div>
 
-      {/* Spacer for fixed nav */}
+      {/* Spacer */}
       <div className="h-20"></div>
     </>
   );

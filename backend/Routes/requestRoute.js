@@ -1,11 +1,21 @@
-import express from 'express';
-import { getAllRequest, submitRequest } from '../Controllers/requestController.js';
-import { isAdmin } from '../middlewares/isAdmin.js';
+import express from "express";
+import {
+  submitRequest,
+  getAllRequest,
+  updateRequestStatus,
+  isAdminCheck
+} from "../Controllers/requestController.js";
 
 const requestRouter = express.Router();
 
-requestRouter.post('/submit', submitRequest);
-requestRouter.get('/all', getAllRequest);
-requestRouter.post('/is-admin', isAdmin);
+// USER
+requestRouter.post("/submit", submitRequest);
+
+// ADMIN
+requestRouter.get("/all", getAllRequest);
+requestRouter.put("/update-status/:id", updateRequestStatus);
+
+// ✅ MUST BE POST (important)
+requestRouter.post("/is-admin", isAdminCheck);
 
 export default requestRouter;

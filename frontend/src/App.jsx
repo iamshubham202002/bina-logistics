@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import AdminPanel from './pages/AdminPanel';
 import NotFound from './pages/NotFound';
+import TrackOrder from "./pages/TrackOrder";
+
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path='/about-us' element={ <AboutUs />} />
         <Route path='/admin-panel' element={ <AdminPanel />} />
         <Route path='/not-found' element={ <NotFound />} />
+        <Route path='/track-order' element={<TrackOrder />} />
+       
       </Routes>
       {/* Footer can be added here if needed */}
       {/* <Footer /> */} 
