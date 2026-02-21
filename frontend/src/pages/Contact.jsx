@@ -3,27 +3,27 @@ import React from 'react';
 import { MdEmail } from 'react-icons/md';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { FaMessage } from 'react-icons/fa6';
-import contactImage from '../assets/contact.jpg'; // ✅ Import image here!
+import contactImage from '../assets/contact.jpg'; 
 
 const ContactPage = () => {
   const ContactInfo = [
     {
       title: 'Delivery',
-      email: 'example@gmail.com',
-      phone: '+8(911)339-88-88',
-      message: '+8(911)339-88-88',
+      email: 'binalogistics@gmail.com',
+      phone: '8777328142',
+      message: '8777328142',
     },
     {
       title: 'Support',
-      email: 'example@gmail.com',
-      phone: '+8(911)339-88-88',
-      message: '+8(911)339-88-88',
+      email: 'pandeyshubham9021@gmail.com',
+      phone: '9219669642',
+      message: '9219669642',
     },
     {
       title: 'Careers',
-      email: 'example@gmail.com',
-      phone: '+8(911)339-88-88',
-      message: '+8(911)339-88-88',
+      email: 'binalogistics@gmail.com',
+      phone: '8777328142',
+      message: '8777328142',
     },
   ];
 
@@ -32,7 +32,7 @@ const ContactPage = () => {
       <div className="relative">
         <img
           className="w-full object-cover brightness-50 filter lg:h-[500px] h-[300px]"
-          src={contactImage} // ✅ Use imported image here
+          src={contactImage} 
           alt="contact page"
         />
         <div className="absolute top-1/2 left-1/2 mx-auto flex w-11/12 max-w-[1200px] -translate-x-1/2 -translate-y-1/2 flex-col text-center text-white lg:ml-5">
