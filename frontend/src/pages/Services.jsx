@@ -25,17 +25,10 @@ const Services = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:3003/api/request/submit",
-        {
-          freightType,
-          load,
-          city,
-          name: yourName,
-          phone: yourPhone,
-          email: yourEmail,
-        }
-      );
+     const res = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/request/submit`,
+  { freightType, load, city, name: yourName, phone: yourPhone, email: yourEmail }
+);
 
       if (res.data.success) {
         alert("Request submitted successfully!");

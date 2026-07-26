@@ -18,7 +18,7 @@ const AdminPanel = () => {
       console.log('Username:', username);
       console.log('Password:', password);
 
-      const res = await axios.post("http://localhost:3003/api/request/is-admin", {username, password});
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/request/is-admin`, {username, password});
       if (res.data.success) {
         setIsVerifed(true);
       } else {

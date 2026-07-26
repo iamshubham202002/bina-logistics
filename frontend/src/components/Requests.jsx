@@ -7,7 +7,7 @@ const Requests = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/api/request/all");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/request/all`);
 
       if (res.data.success) {
         setRequests(res.data.arr);
@@ -24,9 +24,9 @@ const Requests = () => {
   const updateStatus = async (id, status) => {
     try {
       const res = await axios.put(
-        `http://localhost:3003/api/request/update-status/${id}`,
-        { status }
-      );
+  `${import.meta.env.VITE_API_URL}/api/request/update-status/${id}`,
+  { status }
+);
 
       if (res.data.success) {
         alert("Updated Successfully");

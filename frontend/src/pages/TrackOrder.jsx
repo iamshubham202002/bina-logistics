@@ -9,7 +9,7 @@ export default function TrackOrder() {
   const handleTrack = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/orders/track/${orderId}`
+        `${import.meta.env.VITE_API_URL}/api/orders/track/${orderId}`
       );
       setOrder(res.data);
       setError("");
