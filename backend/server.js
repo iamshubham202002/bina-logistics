@@ -8,13 +8,21 @@ import paymentRoutes from "./Routes/paymentRoutes.js";
 
 dotenv.config({path: './.env'});
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
+
 
 const app = express();
 const port = process.env.PORT || 3003;
 
-app.use(express.json());
 app.use(cors({
-  origin: "*"
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
 
