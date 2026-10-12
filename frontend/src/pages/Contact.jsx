@@ -1,137 +1,110 @@
-// ContactPage.jsx
 import React from 'react';
-import { MdEmail } from 'react-icons/md';
-import { FaPhoneAlt } from 'react-icons/fa';
-import { FaMessage } from 'react-icons/fa6';
-import contactImage from '../assets/contact.jpg'; 
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import contactImage from '../assets/contact.jpg';
+
+const ContactInfo = [
+  {
+    title: 'Delivery',
+    email: 'binalogistics@gmail.com',
+    phone: '8777328142',
+    message: '8777328142',
+    icon: Mail,
+  },
+  {
+    title: 'Support',
+    email: 'pandeyshubham9021@gmail.com',
+    phone: '9219669642',
+    message: '9219669642',
+    icon: Phone,
+  },
+  {
+    title: 'Location',
+    email: 'Amani Pandeypur, Jaunpur',
+    phone: 'Jaunpur, Uttar Pradesh',
+    message: 'Open Mon-Sat',
+    icon: MapPin,
+  },
+];
 
 const ContactPage = () => {
-  const ContactInfo = [
-    {
-      title: 'Delivery',
-      email: 'binalogistics@gmail.com',
-      phone: '8777328142',
-      message: '8777328142',
-    },
-    {
-      title: 'Support',
-      email: 'pandeyshubham9021@gmail.com',
-      phone: '9219669642',
-      message: '9219669642',
-    },
-    {
-      title: 'Careers',
-      email: 'binalogistics@gmail.com',
-      phone: '8777328142',
-      message: '8777328142',
-    },
-  ];
-
   return (
-    <>
-      <div className="relative">
-        <img
-          className="w-full object-cover brightness-50 filter lg:h-[500px] h-[300px]"
-          src={contactImage} 
-          alt="contact page"
-        />
-        <div className="absolute top-1/2 left-1/2 mx-auto flex w-11/12 max-w-[1200px] -translate-x-1/2 -translate-y-1/2 flex-col text-center text-white lg:ml-5">
-          <h1 className="text-4xl font-bold sm:text-5xl">Contact us</h1>
-          <p className="mx-auto pt-3 text-xs lg:w-3/5 lg:pt-5 lg:text-base">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Consequatur aperiam natus, nulla, obcaecati nesciunt, itaque
-            adipisci earum ducimus pariatur eaque labore.
-          </p>
+    <main className="bg-slate-50 text-slate-900">
+      <section className="relative">
+        <img src={contactImage} alt="Contact Bina Logistics" className="h-[320px] w-full object-cover brightness-50 md:h-[420px]" />
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="max-w-3xl text-center text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-300">Contact us</p>
+            <h1 className="mt-4 text-4xl font-black sm:text-5xl">Let’s move your business forward.</h1>
+            <p className="mt-5 text-base leading-8 text-slate-200">
+              Need a shipping solution or a quick logistics consultation? Connect with our team and we’ll help you find the best option.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Contact section */}
-      <section className="w-full flex-grow">
-        <section className="mx-auto w-full my-6 grid max-w-[1200px] grid-cols-1 gap-3 px-5 pb-10 lg:grid-cols-3 lg:pt-10">
-          {ContactInfo.map((info, index) => (
-            <div key={index}>
-              <div className="border py-5 shadow-md">
-                <div className="flex justify-between px-4 pb-5">
-                  <p className="text-xl font-bold">{info.title}</p>
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {ContactInfo.map(({ title, email, phone, message, icon: Icon }) => (
+            <div key={title} className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-lg shadow-slate-200/70">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-600">
+                <Icon size={26} />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900">{title}</h2>
+              <div className="mt-5 space-y-4 text-sm text-slate-600">
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="mt-0.5 shrink-0 text-orange-500" />
+                  <span>{email}</span>
                 </div>
-                <div className="flex flex-col px-4">
-                  <a
-                    className="flex items-center"
-                    href={`mailto:${info.email}`}
-                  >
-                    <MdEmail className="mr-3 h-4 w-4 text-violet-900" />
-                    {info.email}
-                  </a>
-                  <a className="flex items-center" href={`tel:${info.phone}`}>
-                    <FaPhoneAlt className="mr-3 h-4 w-4 text-violet-900" />
-                    {info.phone}
-                  </a>
-                  <a className="flex items-center" href={`sms:${info.message}`}>
-                    <FaMessage className="mr-3 h-4 w-4 text-violet-900" />
-                    {info.message}
-                  </a>
+                <div className="flex items-start gap-3">
+                  <Phone size={18} className="mt-0.5 shrink-0 text-orange-500" />
+                  <span>{phone}</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MessageCircle size={18} className="mt-0.5 shrink-0 text-orange-500" />
+                  <span>{message}</span>
                 </div>
               </div>
             </div>
           ))}
-        </section>
-
-        <section className="mx-auto my-5 text-center">
-          <h2 className="text-3xl font-bold">Have another question?</h2>
-          <p>Complete the form below</p>
-        </section>
-
-        {/* Form */}
-        <form className="mx-auto my-5 max-w-[600px] px-5 pb-10" action="">
-          <div className="mx-auto">
-            <div className="my-3 flex w-full gap-2">
-              <input
-                className="w-1/2 border px-4 py-2"
-                type="email"
-                placeholder="E-mail"
-              />
-              <input
-                className="w-1/2 border px-4 py-2"
-                type="text"
-                placeholder="Full Name"
-              />
-            </div>
-          </div>
-          <select
-            className="mb-3 w-full border px-4 py-2"
-            name="category"
-            id="category-select"
-          >
-            <option value="">Please choose a category</option>
-            <option value="delivery">Delivery</option>
-            <option value="support">Support</option>
-            <option value="profile">Profile</option>
-            <option value="careers">Careers</option>
-            <option value="another">Another category</option>
-          </select>
-          <textarea
-            className="w-full border px-4 py-2"
-            placeholder="Write a commentary..."
-            defaultValue={''}
-          />
-          <div className="lg:items:center container mt-4 flex flex-col justify-between lg:flex-row">
-            <div className="flex items-center">
-              <input className="mr-3" type="checkbox" id="checkbox_terms" />
-              <label htmlFor="checkbox_terms">
-                I have read and agree with
-                <a href="#" className="text-violet-900">
-                  {' '}
-                  terms &amp; conditions
-                </a>
-              </label>
-            </div>
-            <button className="my-3 bg-amber-400 px-4 py-2 lg:my-0">
-              Send Message
-            </button>
-          </div>
-        </form>
+        </div>
       </section>
-    </>
+
+      <section className="mx-auto max-w-5xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl shadow-slate-200 md:p-10">
+          <div className="mb-8 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-300">Send a message</p>
+            <h2 className="mt-4 text-3xl font-black sm:text-4xl">Have another question?</h2>
+          </div>
+
+          <form className="space-y-5">
+            <div className="grid gap-5 md:grid-cols-2">
+              <input className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-slate-400 focus:border-orange-400" type="text" placeholder="Full name" />
+              <input className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-slate-400 focus:border-orange-400" type="email" placeholder="Email address" />
+            </div>
+
+            <select className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none focus:border-orange-400" name="category" id="category-select">
+              <option value="">Please choose a category</option>
+              <option value="delivery">Shipping enquiry</option>
+              <option value="support">Support</option>
+              <option value="careers">Careers</option>
+              <option value="another">Other</option>
+            </select>
+
+            <textarea className="min-h-[170px] w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-slate-400 focus:border-orange-400" placeholder="Write your message..." />
+
+            <div className="flex flex-col justify-between gap-4 pt-2 md:flex-row md:items-center">
+              <label className="flex items-center gap-3 text-sm text-slate-300">
+                <input type="checkbox" className="h-4 w-4 accent-orange-500" />
+                I agree to the terms and conditions.
+              </label>
+              <button type="submit" className="rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-400">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
   );
 };
 

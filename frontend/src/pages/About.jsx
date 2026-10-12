@@ -1,83 +1,101 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { ArrowRight, Award, CheckCircle2, ShieldCheck, Truck, Users } from 'lucide-react';
 import truck1 from '../assets/truck/truck1.jpg';
 
-// ✅ Lucide icons
-import { CheckCircle, Users, Award, Smile } from 'lucide-react';
-
-// ✅ Stats data with component references
 const stats = [
-  { label: 'Projects Completed', value: '4500', Icon: CheckCircle },
-  { label: 'Active Members', value: '54+', Icon: Users },
-  { label: 'Award Winning', value: '14+', Icon: Award },
-  { label: 'Satisfaction Rate', value: '100%', Icon: Smile },
+  { label: 'Shipments delivered', value: '45K+', icon: CheckCircle2 },
+  { label: 'Client partners', value: '1500+', icon: Users },
+  { label: 'Awards earned', value: '14+', icon: Award },
+  { label: 'Safety record', value: '99.8%', icon: ShieldCheck },
 ];
 
-// ✅ Testimonial
-const testimonials = [
-  {
-    name: 'Rakesh Gupta',
-    role: 'Professional',
-    photo: truck1,
-    text: 'My experience with Bina Logistics has been excellent.',
-    rating: 5,
-  },
+const values = [
+  'Transparent communication and reporting',
+  'Reliable transport coordination at every mile',
+  'Customized solutions for every customer',
+  'Compliance, safety, and operational excellence',
 ];
+
+const testimonial = {
+  name: 'Rakesh Gupta',
+  role: 'Operations Manager',
+  text: 'Bina Logistics has been a dependable partner for our transport requirements. Their responsiveness, route planning, and careful handling have made a visible difference to our operations.',
+};
 
 export default function AboutUs() {
-  const [idx] = useState(0);
-  const t = testimonials[idx];
-
   return (
-    <section className="bg-gray-50 py-16 px-4">
-      {/* Hero */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-center">
-        <div className="md:w-1/2">
-          <h2 className="text-red-500 text-xl font-semibold">About Bina Logistics</h2>
-          <h3 className="text-4xl font-bold text-stone-900 mb-4">Delivering Trust Since 2017</h3>
-          <p className="text-stone-700 mb-6">
-            Bina Logistics is your trusted partner for hassle-free and reliable cargo services. We deliver your goods safely and on time.
-          </p>
-        </div>
-        <div className="md:w-1/2">
-          <img src={truck1} alt="Truck" className="rounded-lg shadow-lg w-full" />
-        </div>
-      </div>
-
-      {/* Stats with improved hover effects */}
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center mt-12">
-        {stats.map((s, i) => {
-          const { Icon } = s;
-          return (
-            <div
-              key={i}
-              className="group bg-white p-6 rounded-lg shadow-sm border border-transparent transform transition duration-300 hover:scale-105 hover:shadow-xl hover:bg-red-50 hover:border-red-200 hover:ring-2 hover:ring-red-200 cursor-pointer"
-            >
-              <div className="flex justify-center mb-2">
-                <div className="bg-red-100 p-2 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                  <Icon className="w-8 h-8 text-red-500" />
-                </div>
-              </div>
-              <div className="text-4xl font-bold text-red-500">{s.value}</div>
-              <div className="text-stone-700 mt-2 group-hover:text-red-600 transition-colors duration-300">
-                {s.label}
-              </div>
+    <main className="bg-slate-50 text-slate-900">
+      <section className="bg-slate-950 px-4 py-20 text-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-300">About us</p>
+            <h1 className="mt-4 text-4xl font-black sm:text-5xl">Delivering trust through every shipment.</h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-slate-300">
+              Bina Logistics was built around one simple promise: move cargo with reliability, care, and accountability. Over the years, we have become a dependable logistics partner for businesses that need efficient delivery and peace of mind.
+            </p>
+            <div className="mt-8 flex items-center gap-3 text-orange-300">
+              <span className="font-semibold">Learn more</span>
+              <ArrowRight size={18} />
             </div>
-          );
-        })}
-      </div>
+          </div>
 
-      {/* Testimonial */}
-      <div className="max-w-3xl mx-auto bg-white mt-16 p-8 rounded-xl shadow-lg relative">
-        <h3 className="text-3xl font-bold mb-4 text-center">What People Say</h3>
-        <p className="text-stone-700 italic mb-6 text-center">“{t.text}”</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <img src={t.photo} alt={t.name} className="w-16 h-16 rounded-full object-cover" />
-          <div className="text-center sm:text-left">
-            <h4 className="font-semibold">{t.name}</h4>
-            <p className="text-sm text-stone-500">{t.role}</p>
+          <div className="overflow-hidden rounded-[2rem] shadow-2xl shadow-slate-900/30">
+            <img src={truck1} alt="Bina Logistics truck" className="h-full w-full object-cover" />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(({ label, value, icon: Icon }) => (
+            <div key={label} className="rounded-[1.75rem] border border-slate-200 bg-white p-6 text-center shadow-lg shadow-slate-200/60">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-600">
+                <Icon size={26} />
+              </div>
+              <div className="mt-5 text-3xl font-black text-slate-900">{value}</div>
+              <div className="mt-2 text-sm text-slate-600">{label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div className="rounded-[2rem] bg-slate-900 p-8 text-white shadow-2xl shadow-slate-200">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/15 text-orange-400">
+              <Truck size={28} />
+            </div>
+            <h2 className="text-3xl font-black">Why our clients trust us</h2>
+            <p className="mt-5 text-base leading-8 text-slate-300">
+              We simplify logistics through dependable execution, proactive communication, and tailored solutions that fit the operational demands of our customers.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {values.map((item) => (
+              <div key={item} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-base font-medium text-slate-700 shadow-sm shadow-slate-200">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 pb-20 pt-4 sm:px-6 lg:px-8">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-500">Client feedback</p>
+          <blockquote className="mt-6 text-xl leading-9 text-slate-700 md:text-2xl">
+            “{testimonial.text}”
+          </blockquote>
+          <div className="mt-8 flex items-center justify-between gap-4 border-t border-slate-200 pt-6">
+            <div>
+              <div className="text-lg font-bold text-slate-900">{testimonial.name}</div>
+              <div className="text-sm text-slate-500">{testimonial.role}</div>
+            </div>
+            <div className="text-right text-sm font-semibold text-orange-500">★★★★★</div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

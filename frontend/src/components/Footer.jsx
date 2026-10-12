@@ -3,73 +3,61 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="bg-red-800 text-white py-8">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 w-11/12">
-          
-          {/* Logo / Company */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold">Bina Logistics</h1>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <p>Phone: 8777328142</p>
-            <p>Email: binalogistics@gmail.com</p>
-            <p>Address: Amani Pandeypur Pariyat Jaunpur</p>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Social Media</h3>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <FaFacebook className="text-2xl hover:text-blue-600" />
-              </a>
-              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter className="text-2xl hover:text-blue-400" />
-              </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                <FaInstagram className="text-2xl hover:text-pink-500" />
-              </a>
-              <a href="https://www.linkedin.com/in/shubham-pandey-ba9b28243/" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin className="text-2xl hover:text-blue-700" />
-              </a>
-            </div>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Services</h3>
-            <ul>
-              <li>
-                <a href="#" className="hover:underline">
-                  Freight Shipping
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Warehousing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Supply Chain Management
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-slate-950 text-slate-200">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:px-8">
+        <div>
+          <div className="mb-4 text-2xl font-black uppercase tracking-[0.16em] text-white">Bina</div>
+          <div className="mb-5 text-sm font-medium tracking-[0.28em] text-orange-300">LOGISTICS</div>
+          <p className="max-w-sm text-sm leading-7 text-slate-300">
+            We move business forward with reliable freight, smarter warehousing, and on-time delivery solutions designed around your supply chain.
+          </p>
         </div>
 
-        {/* Bottom Developer Credit */}
-        <div className="mt-8 border-t border-red-600 pt-4 text-center text-sm">
-          © {new Date().getFullYear()} Bina Logistics. All Rights Reserved. <br />
-          Developed by <span className="font-semibold">Shubham Pandey</span>
+        <div>
+          <h3 className="mb-5 text-lg font-semibold text-white">Quick Links</h3>
+          <ul className="space-y-3 text-sm text-slate-300">
+            <li>Home</li>
+            <li>Services</li>
+            <li>About Us</li>
+            <li>Contact</li>
+          </ul>
         </div>
 
-      </footer>
-    </div>
+        <div>
+          <h3 className="mb-5 text-lg font-semibold text-white">Contact</h3>
+          <ul className="space-y-3 text-sm text-slate-300">
+            <li>Phone: +91 87773 28142</li>
+            <li>Email: binalogistics@gmail.com</li>
+            <li>Address: Amani Pandeypur, Jaunpur</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-5 text-lg font-semibold text-white">Follow Us</h3>
+          <div className="flex gap-4 text-xl text-slate-300">
+            <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="hover:text-orange-400 transition-colors">
+              <FaFacebook />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noreferrer" className="hover:text-orange-400 transition-colors">
+              <FaTwitter />
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noreferrer" className="hover:text-orange-400 transition-colors">
+              <FaInstagram />
+            </a>
+            <a href="https://www.linkedin.com/in/shubham-pandey-ba9b28243/" target="_blank" rel="noreferrer" className="hover:text-orange-400 transition-colors">
+              <FaLinkedin />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-400 sm:px-6 lg:flex-row lg:px-8">
+          <p>© {new Date().getFullYear()} Bina Logistics. All Rights Reserved.</p>
+          <p>Developed by Shubham Pandey</p>
+        </div>
+      </div>
+    </footer>
   );
 };
 

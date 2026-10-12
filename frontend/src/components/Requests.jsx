@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import RequestCard from './RequestCard';
 
 const Requests = () => {
-
   const [requests, setRequests] = useState([]);
 
   const fetchRequests = async () => {
@@ -10,7 +10,7 @@ const Requests = () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/request/all`);
 
       if (res.data.success) {
-        setRequests(res.data.arr);
+        setRequests(res.data.arr || []);
       }
     } catch (error) {
       console.log(error);
@@ -24,50 +24,34 @@ const Requests = () => {
   const updateStatus = async (id, status) => {
     try {
       const res = await axios.put(
-  `${import.meta.env.VITE_API_URL}/api/request/update-status/${id}`,
-  { status }
-);
+        `${import.meta.env.VITE_API_URL}/api/request/update-status/${id}`,
+        { status }
+      );
 
       if (res.data.success) {
-        alert("Updated Successfully");
+        alert('Updated Successfully');
         fetchRequests();
+      } else {
+        alert(res.data.message || 'Could not update request');
       }
-
     } catch (error) {
       console.log(error);
+      alert('Something went wrong while updating the request');
     }
   };
 
   return (
-    <div className="p-5 space-y-4">
+    <div className="space-y-4 p-5">
       {requests.length === 0 ? (
         <h2>No Pending Requests</h2>
       ) : (
         requests.map((item) => (
-          <div key={item._id} className="border p-4 rounded shadow">
-            <p><b>Name:</b> {item.name}</p>
-            <p><b>Email:</b> {item.email}</p>
-            <p><b>Phone:</b> {item.phone}</p>
-            <p><b>Freight:</b> {item.freightType}</p>
-            <p><b>Load:</b> {item.load}</p>
-            <p><b>City:</b> {item.city}</p>
-
-            <div className="mt-3 flex gap-3">
-              <button
-                onClick={() => updateStatus(item._id, "Accepted")}
-                className="bg-green-500 text-white px-3 py-1 rounded"
-              >
-                Accept
-              </button>
-
-              <button
-                onClick={() => updateStatus(item._id, "Rejected")}
-                className="bg-red-500 text-white px-3 py-1 rounded"
-              >
-                Reject
-              </button>
-            </div>
-          </div>
+          <RequestCard
+            key={item._id}
+            request={item}
+            onAccept={(id) => updateStatus(id, 'Accepted')}
+            onReject={(id) => updateStatus(id, 'Rejected')}
+          />
         ))
       )}
     </div>

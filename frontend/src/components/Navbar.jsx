@@ -1,36 +1,26 @@
 import { useState, useEffect } from 'react';
-import logo from "../assets/logo.png";
+import logo from '../assets/logo.png';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [nav, setNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleNav = () => setNav(!nav);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Tools removed from here (now handled separately)
   const navItems = [
     { id: 1, text: 'Home', path: '/' },
     { id: 2, text: 'Services', path: '/services' },
-    { id: 4, text: 'Contact Us', path: '/contact-us' },
-    { id: 5, text: 'About Us', path: '/about-us' },
+    { id: 3, text: 'Contact Us', path: '/contact-us' },
+    { id: 4, text: 'About Us', path: '/about-us' },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -39,124 +29,86 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
       <div
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur transition-all duration-500 ${
-          isScrolled ? 'bg-red-700/90 shadow-md' : 'bg-red-600/60'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-slate-950/90 shadow-lg shadow-slate-900/20 backdrop-blur-md' : 'bg-transparent'
         }`}
       >
-        <div className="flex justify-between items-center h-20 max-w-[1240px] mx-auto px-4">
-
-          {/* Logo */}
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div
-            className="flex items-center space-x-2 cursor-pointer"
+            className="flex cursor-pointer items-center gap-3"
             onClick={() => handleNavigate('/')}
           >
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-12 w-12 object-contain transition-transform duration-500 hover:rotate-6"
-            />
-            <span className="text-xl font-bold text-white">
-              Bina Logistics
-            </span>
+            <img src={logo} alt="Bina Logistics logo" className="h-12 w-12 rounded-full object-contain bg-white/10 p-1" />
+            <div>
+              <div className="text-lg font-black tracking-[0.14em] text-white uppercase">Bina</div>
+              <div className="text-xs font-medium tracking-[0.28em] text-slate-300">Logistics</div>
+            </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex space-x-6 text-white items-center">
-
+          <ul className="hidden items-center gap-8 text-sm font-medium text-slate-200 md:flex">
             {navItems.map((item) => (
               <li
                 key={item.id}
                 onClick={() => handleNavigate(item.path)}
-                className={`relative px-2 py-1 cursor-pointer group transition duration-300 ${
-                  location.pathname === item.path ? 'text-[#00df9a]' : ''
+                className={`cursor-pointer transition-colors duration-200 ${
+                  location.pathname === item.path ? 'text-orange-400' : 'hover:text-white'
                 }`}
               >
                 {item.text}
-                <span
-                  className={`absolute left-0 bottom-0 h-0.5 bg-[#00df9a] transition-all duration-300 ${
-                    location.pathname === item.path
-                      ? 'w-full'
-                      : 'w-0 group-hover:w-full'
-                  }`}
-                ></span>
               </li>
             ))}
 
-            {/* 🔥 Tools Dropdown */}
-            <li className="relative group px-2 py-1 cursor-pointer">
-              <span
-                className={`transition duration-300 ${
-                  location.pathname === '/track-order'
-                    ? 'text-[#00df9a]'
-                    : 'group-hover:text-[#00df9a]'
-                }`}
-              >
-                Tools ▾
-              </span>
-
-              {/* Dropdown */}
-              <div className="absolute left-0 top-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1 translate-y-2 bg-white text-black rounded-md shadow-xl w-44">
-                <div
-                  onClick={() => handleNavigate('/track-order')}
-                  className="px-4 py-2 hover:bg-[#00df9a] hover:text-black cursor-pointer transition duration-200"
-                >
-                  Track Order
-                </div>
-              </div>
+            <li
+              onClick={() => handleNavigate('/track-order')}
+              className={`cursor-pointer rounded-full border px-4 py-2 font-semibold transition-all duration-200 ${
+                location.pathname === '/track-order'
+                  ? 'border-orange-400 bg-orange-400 text-slate-950'
+                  : 'border-white/30 bg-transparent text-white hover:border-orange-400 hover:text-orange-300'
+              }`}
+            >
+              Track Order
             </li>
-
           </ul>
 
-          {/* Mobile Icon */}
-          <div
-            onClick={handleNav}
-            className="block md:hidden cursor-pointer text-white"
-          >
+          <div onClick={() => setNav(!nav)} className="block cursor-pointer text-white md:hidden">
             {nav ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        <ul
-          className={`fixed top-0 left-0 w-[70%] h-full bg-red-700/95 backdrop-blur text-white border-r border-gray-700 z-50 transform transition-transform duration-500 ${
-            nav ? 'translate-x-0' : '-translate-x-full'
-          }`}
-        >
-          <div className="flex items-center justify-between px-4 py-4 border-b border-gray-600">
-            <div className="flex items-center space-x-2">
-              <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-bold">Bina Logistics</span>
+      <div
+        className={`fixed left-0 top-0 z-40 h-full w-[80%] max-w-xs bg-slate-950/95 p-6 text-white transition-transform duration-300 md:hidden ${
+          nav ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Logo" className="h-10 w-10 rounded-full object-contain bg-white/10 p-1" />
+            <div>
+              <div className="text-base font-black uppercase tracking-[0.14em]">Bina</div>
+              <div className="text-[10px] tracking-[0.22em] text-slate-300">LOGISTICS</div>
             </div>
-            <AiOutlineClose
-              size={24}
-              onClick={handleNav}
-              className="cursor-pointer"
-            />
           </div>
+          <AiOutlineClose size={22} onClick={() => setNav(false)} className="cursor-pointer" />
+        </div>
 
+        <ul className="space-y-2 text-base">
           {navItems.map((item) => (
             <li
               key={item.id}
               onClick={() => handleNavigate(item.path)}
-              className={`p-4 border-b border-gray-600 cursor-pointer transition duration-300 ${
-                location.pathname === item.path
-                  ? 'bg-[#00df9a] text-black'
-                  : 'hover:bg-[#00df9a] hover:text-black'
+              className={`rounded-xl px-4 py-3 transition ${
+                location.pathname === item.path ? 'bg-orange-400 text-slate-950 font-semibold' : 'hover:bg-white/5'
               }`}
             >
               {item.text}
             </li>
           ))}
-
-          {/* Mobile Track Order */}
           <li
             onClick={() => handleNavigate('/track-order')}
-            className={`p-4 border-b border-gray-600 cursor-pointer transition duration-300 ${
-              location.pathname === '/track-order'
-                ? 'bg-[#00df9a] text-black'
-                : 'hover:bg-[#00df9a] hover:text-black'
+            className={`rounded-xl px-4 py-3 transition ${
+              location.pathname === '/track-order' ? 'bg-orange-400 text-slate-950 font-semibold' : 'hover:bg-white/5'
             }`}
           >
             Track Order
@@ -164,8 +116,7 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Spacer */}
-      <div className="h-20"></div>
+      <div className="h-20" />
     </>
   );
 };
